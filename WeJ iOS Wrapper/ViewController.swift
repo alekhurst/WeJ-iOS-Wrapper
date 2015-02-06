@@ -16,8 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.viewDidLoad()
-        var url = NSURL(string:"http://localhost:3000")
+        var url = NSURL(string:"http://home.wejapp.com/#/wej")
         var req = NSURLRequest(URL:url!)
         self.webView!.loadRequest(req)
     }
@@ -29,7 +28,11 @@ class ViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.webView = WKWebView()
+        var webViewConfig: WKWebViewConfiguration = WKWebViewConfiguration()
+        webViewConfig.allowsInlineMediaPlayback = true
+        webViewConfig.mediaPlaybackRequiresUserAction = false
+
+        self.webView = WKWebView(frame: self.view.frame, configuration: webViewConfig)
         self.view = self.webView!
     }
 }
